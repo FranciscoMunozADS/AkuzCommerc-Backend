@@ -30,14 +30,13 @@ const insertUser = async (payload) => {
 // Validación de si existe el usuario
 
 const findUserByEmailOrId = async (e_mail, idUsuario) => {
-    const query = `
+  const query = `
     SELECT * FROM usuarios
     WHERE e_mail = $1 OR idUsuario = $2
   `;
-    const values = [e_mail, idUsuario];
-    const { rows } = await pool.query(query, values);
-    return rows[0]; // retorna el primer usuario o undefined si no existe
+  const values = [e_mail, idUsuario];
+  const { rows } = await pool.query(query, values);
+  return rows[0]; // retorna el primer usuario o undefined si no existe
 };
-
 
 module.exports = { insertUser, findUserByEmailOrId };
