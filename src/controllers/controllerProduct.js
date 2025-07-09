@@ -5,12 +5,13 @@ const {
   getProductByID,
   deleteProduct,
 } = require("../models/queryProduct");
+const { prepareHATEOAS } = require("./hateoas");
 
 const readProduct = async (req, res) => {
   try {
     const prod = await getAllProducts();
-
-    res.send(prod);
+    const HATEOAS = await prepareHATEOAS(prod);
+    res.send(HATEOAS);
   } catch (error) {
     console.log(error);
     res.status(error.code || 500).send(error);
@@ -67,7 +68,9 @@ const dropProduct = async (req, res) => {
 };
 
 const defaultUrl = (req, res) => {
-  return res.status(404).send({ message: `${req.originalUrl} : No encontrada` });
+  return res
+    .status(404)
+    .send({ message: `${req.originalUrl} : No encontrada` });
 };
 
 module.exports = {
@@ -76,5 +79,5 @@ module.exports = {
   updateProduct,
   readProductByID,
   dropProduct,
-  defaultUrl
+  defaultUrl,
 };
