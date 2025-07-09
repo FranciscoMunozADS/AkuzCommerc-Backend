@@ -4,7 +4,7 @@ const {
   putProduct,
   getProductByID,
   deleteProduct,
-} = require("../models/query");
+} = require("../models/queryProduct");
 
 const readProduct = async (req, res) => {
   try {
