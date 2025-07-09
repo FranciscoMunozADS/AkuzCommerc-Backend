@@ -5,6 +5,7 @@ const {
   updateProduct,
   readProductByID,
   dropProduct,
+  defaultUrl,
 } = require("../controllers/controller");
 
 const router = Router();
