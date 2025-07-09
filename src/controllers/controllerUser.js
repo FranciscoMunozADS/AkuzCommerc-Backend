@@ -1,5 +1,8 @@
-const { insertUser, findUserByEmailOrId } = require("../models/queryUser");
+const { insertUser, findUserByEmailOrId, findUserByEmail } = require("../models/queryUser");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+/***** Registro *****/
 
 const registerUser = async (req, res) => {
   try {
@@ -58,4 +61,43 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser };
+/***** LOGIN *****/
+
+const loginUser = async (req, res) => {
+    try {
+        const { e_mail, password } = req.body;
+
+        // Validaciones
+
+        if (!e_mail || !password) {
+            return res.status(400).json({ error: "Email y contraseña son obligatorios." });
+        }
+
+        const user = await findUserByEmail(e_mail);
+        if (!user) {
+            return res.status(404).json({ error: "Usuario no encontrado." });
+        }
+
+        const passwordValid = await bcrypt.compare(password, user.password);
+        if (!passwordValid) {
+            return res.status(401).json ({ error: "Usuario no encontrado." });
+        }
+
+        const { password: _, ...userWithoutPassword } = user; // Para excluir la contraseña del objeto de respuesta
+
+        const token = jwt.sign(userWithoutPassword, process.env.JWT_SECRET, {
+            expiresIn: "1h",
+        });
+
+        res.status(200).json({
+            message: "Login exitoso.",
+            token,
+            user: userWithoutPassword,
+        });
+    }   catch (error) {
+        console.error("Error al iniciar sesión:", error.message);
+        res.status(500).json({ error: "Error interno del servidor." });
+    }
+};
+
+module.exports = { registerUser, loginUser };

@@ -7,8 +7,14 @@ const {
   dropProduct,
   defaultUrl,
 } = require("../controllers/controllerProduct");
+const { registerUser, loginUser } = require("../controllers/controllerUser");
 
 const router = Router();
+
+// User Routes
+
+router.post("/register", registerUser);
+router.post("/login", loginUser);
 
 // Product Routes
 router.get("/products", readProduct);

@@ -39,4 +39,12 @@ const findUserByEmailOrId = async (e_mail, idUsuario) => {
   return rows[0]; // retorna el primer usuario o undefined si no existe
 };
 
-module.exports = { insertUser, findUserByEmailOrId };
+/***** LOGIN *****/
+
+const findUserByEmail = async (e_mail) => {
+    const query = `SELECT * FROM usuarios WHERE e_mail = $1`;
+    const { rows } = await pool.query(query, [e_mail]);
+    return rows[0];
+};
+
+module.exports = { insertUser, findUserByEmailOrId, findUserByEmail, };
