@@ -42,9 +42,9 @@ const findUserByEmailOrId = async (e_mail, idUsuario) => {
 /***** LOGIN *****/
 
 const findUserByEmail = async (e_mail) => {
-    const query = `SELECT * FROM usuarios WHERE e_mail = $1`;
-    const { rows } = await pool.query(query, [e_mail]);
-    return rows[0];
+  const query = `SELECT * FROM usuarios WHERE e_mail = $1`;
+  const { rows } = await pool.query(query, [e_mail]);
+  return rows[0];
 };
 
-module.exports = { insertUser, findUserByEmailOrId, findUserByEmail, };
+module.exports = { insertUser, findUserByEmailOrId, findUserByEmail };
