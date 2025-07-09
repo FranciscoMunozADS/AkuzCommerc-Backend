@@ -37,7 +37,7 @@ const updateProduct = async (req, res) => {
     res.send("Producto Modificado");
   } catch (error) {
     console.log(error);
-    res.status(error.code || 500).send(error);
+    res.status(error.code || 404).send(error);
   }
 };
 
