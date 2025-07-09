@@ -2,6 +2,8 @@ const {
   getAllProducts,
   postNewProduct,
   putProduct,
+  getProductByID,
+  deleteProduct,
 } = require("../models/query");
 
 const readProduct = async (req, res) => {
@@ -39,8 +41,40 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const readProductByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await getProductByID(id);
+
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(error.code || 404);
+  }
+};
+
+const dropProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deleteProduct(id);
+
+    res.send("Producto Eliminado");
+  } catch (error) {
+    console.log(error);
+    res.status(error.code || 404).send(error);
+  }
+};
+
+const defaultUrl = (req, res) => {
+  return res.status(404).send({ message: `${req.originalUrl} : No encontrada` });
+};
+
 module.exports = {
   readProduct,
   createProduct,
   updateProduct,
+  readProductByID,
+  dropProduct,
+  defaultUrl
 };

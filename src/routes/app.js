@@ -1,12 +1,24 @@
 const { Router } = require("express");
-const { readProduct, createProduct } = require("../controllers/controller");
+const {
+  readProduct,
+  createProduct,
+  updateProduct,
+  readProductByID,
+  dropProduct,
+} = require("../controllers/controller");
 
-const router = Router()
+const router = Router();
 
-router.get("/products", readProduct)
-router.post("/products", createProduct)
-// router.put("/products/:id", )
+// Product Routes
+router.get("/products", readProduct);
+router.post("/products", createProduct);
+router.put("/products/:id", updateProduct);
+router.get("/products/:id", readProductByID);
+router.delete("/products/:id", dropProduct);
+
+// Default Route => Por si se ingresa una ruta no correspondida
+router.use(defaultUrl);
 
 module.exports = {
-    router
-}
+  router,
+};

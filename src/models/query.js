@@ -34,8 +34,31 @@ const putProduct = async (payload, id) => {
   }
 };
 
+const getProductByID = async (id) => {
+  const query = "SELECT * FROM productos WHERE id = $1";
+  const values = [id];
+
+  const {
+    rows: [products],
+  } = await pool.query(query, values);
+
+  return products;
+};
+
+const deleteProduct = async (id) => {
+  const query = "DELETE FROM productos WHERE id = $1";
+  const values = [id];
+
+  const { rowCount } = await pool.query(query, values);
+
+  if (!rowCount)
+    throw { code: 404, message: "No se encontró ningún usuario con este ID" };
+};
+
 module.exports = {
   getAllProducts,
   postNewProduct,
-  putProduct
+  putProduct,
+  getProductByID,
+  deleteProduct
 };
