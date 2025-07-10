@@ -86,7 +86,7 @@ const loginUser = async (req, res) => {
 
     const passwordValid = await bcrypt.compare(password, user.password);
     if (!passwordValid) {
-      return res.status(401).json({ error: "Usuario no encontrado." });
+      return res.status(401).json({ error: "Password incorrecto." });
     }
 
     const { password: _, ...userWithoutPassword } = user; // Para excluir la contraseña del objeto de respuesta
