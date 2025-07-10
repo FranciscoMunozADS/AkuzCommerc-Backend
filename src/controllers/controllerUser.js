@@ -106,6 +106,8 @@ const loginUser = async (req, res) => {
   }
 };
 
+/***** Profile *****/
+
 const getProfile = (req, res) => {
   try {
     const user = req.user;

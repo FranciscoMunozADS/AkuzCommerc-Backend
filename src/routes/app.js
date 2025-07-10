@@ -17,7 +17,6 @@ const { validateToken } = require("../middleware/middleware");
 const router = Router();
 
 // User Routes
-
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/profile", validateToken, getProfile);
