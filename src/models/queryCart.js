@@ -33,7 +33,23 @@ const postAddCart = async (payload) => {
   await pool.query(query, values);
 };
 
+const deleteProductCart = async (id) => {
+  const query = "DELETE FROM carroCompra WHERE id = $1";
+  const values = [id];
+
+  const { rowCount } = await pool.query(query, values);
+
+  if (!rowCount)
+    throw { code: 404, message: "No se encontró ningún producto con este SKU" };
+};
+
+const postOrder = async (payload) => {
+
+}
+
 module.exports = {
   getProductCart,
   postAddCart,
+  deleteProductCart,
+  postOrder
 };
