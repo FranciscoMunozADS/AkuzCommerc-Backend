@@ -1,4 +1,4 @@
-const pool = require("../database/db.js");
+const pool = require("../database/connection");
 
 /***** REGISTRO *****/
 

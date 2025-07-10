@@ -3,7 +3,7 @@ const {
   findUserByEmailOrId,
   findUserByEmail,
 } = require("../models/queryUser");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 /***** Registro *****/
@@ -106,4 +106,14 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const getProfile = (req, res) => {
+  try {
+    const user = req.user;
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error("Error al obtener perfil:", error.message);
+    res.status(500).json({ error: "Error al obtener perfil." });
+  }
+};
+
+module.exports = { registerUser, loginUser, getProfile };
