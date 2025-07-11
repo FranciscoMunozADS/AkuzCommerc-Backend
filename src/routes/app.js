@@ -1,4 +1,12 @@
 const { Router } = require("express");
+const { validateToken } = require("../middleware/middleware");
+
+const {
+  registerUser,
+  loginUser,
+  getProfile,
+} = require("../controllers/controllerUser");
+
 const {
   readProduct,
   createProduct,
@@ -19,6 +27,11 @@ const {
 } = require("../controllers/controllerOrder");
 
 const router = Router();
+
+// User Routes
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.get("/profile", validateToken, getProfile);
 
 // Product Routes
 router.get("/products", readProduct);
