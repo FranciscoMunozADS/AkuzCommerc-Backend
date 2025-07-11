@@ -2,12 +2,12 @@ const { pool } = require("../database/connection");
 
 const getAllProducts = async () => {
   const query = `
-  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.descripcion as categoria, u.id as id_usuario, u.nombre_completo 
+  SELECT p.id, p.sku, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.descripcion as categoria, u.id as id_usuario, u.nombre_completo 
   FROM productos p 
-  inner join categoriaProductos cp 
-  on p.id_categoria = cp.id 
-  inner join usuarios u 
-  on p.id_usuario = u.id
+  INNER join categoriaProductos cp 
+  ON p.id_categoria = cp.id 
+  INNER join usuarios u 
+  ON p.id_usuario = u.id
   `;
 
   const { rows: products } = await pool.query(query);

@@ -11,7 +11,7 @@ const readProduct = async (req, res) => {
   try {
     const prod = await getAllProducts();
     const HATEOAS = await prepareHATEOAS(prod);
-    res.send(HATEOAS);
+    res.status(200).send(HATEOAS);
   } catch (error) {
     console.log(error);
     res.status(error.code || 500).send(error);
@@ -22,10 +22,10 @@ const createProduct = async (req, res) => {
   try {
     const payload = req.body;
     await postNewProduct(payload);
-    res.send("Producto Creado");
+    res.status(201).send("Producto Creado");
   } catch (error) {
     console.log(error);
-    res.status(error.code || 500).send(error);
+    res.status(error.code || 400).send(error);
   }
 };
 
@@ -35,10 +35,10 @@ const updateProduct = async (req, res) => {
     const payload = req.body;
 
     await putProduct(payload, id);
-    res.send("Producto Modificado");
+    res.status(200).send("Producto Modificado");
   } catch (error) {
     console.log(error);
-    res.status(error.code || 404).send(error);
+    res.status(error.code || 400).send(error);
   }
 };
 
@@ -48,7 +48,7 @@ const readProductByID = async (req, res) => {
 
     const result = await getProductByID(id);
 
-    res.send(result);
+    res.status(200).send(result);
   } catch (error) {
     console.log(error);
     res.status(error.code || 404);
@@ -60,7 +60,7 @@ const dropProduct = async (req, res) => {
     const { id } = req.params;
     await deleteProduct(id);
 
-    res.send("Producto Eliminado");
+    res.status(200).send("Producto Eliminado");
   } catch (error) {
     console.log(error);
     res.status(error.code || 404).send(error);

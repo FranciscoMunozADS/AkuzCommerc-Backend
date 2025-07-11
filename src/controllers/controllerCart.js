@@ -23,7 +23,7 @@ const addProductInCart = async (req, res) => {
     res.send("Producto Agregado");
   } catch (error) {
     console.log(error);
-    res.status(error.code || 500).send(error);
+    res.status(error.code || 201).send(error);
   }
 };
 
@@ -42,13 +42,17 @@ const dropProductInCart = async (req, res) => {
 const finishBuy = async (req, res) => {
   try {
     const payload = req.body;
+    const userId = req.user.id;
 
-    const result = await postOrder(payload);
+    const result = await postOrder(payload, userId);
 
-    res.send("Compra realizada con éxito");
+    res.status(200).json({
+      message: result.message,
+      order_id: Date.now(), // opcional: generar id simulado de orden
+    });
   } catch (error) {
-    console.log(error);
-    res.status(error.code || 500).send(error);
+    console.error(error);
+    res.status(error.code || 500).send({ error: error.message });
   }
 };
 

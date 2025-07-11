@@ -8,15 +8,13 @@ const getOrders = async () => {
   return cart;
 };
 
-const getOrdersById = async (id) => {
-  const query = "SELECT * FROM historicoVentasUsuario WHERE id = $1";
-  const values = [id];
+const getOrdersById = async (userId) => {
+  const query = "SELECT * FROM historicoVentasUsuario WHERE id_usuario = $1";
+  const values = [userId];
 
-  const {
-    rows: [cart],
-  } = await pool.query(query, values);
+  const { rows } = await pool.query(query, values);
 
-  return cart;
+  return rows;
 };
 
 module.exports = {

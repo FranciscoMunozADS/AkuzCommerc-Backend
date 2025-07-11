@@ -44,11 +44,11 @@ router.delete("/products/:id", dropProduct);
 router.get("/cart", readProductCart);
 router.post("/cart", addProductInCart);
 router.delete("/cart/:sku", dropProductInCart);
-router.get("/checkout", finishBuy);
+router.post("/checkout", validateToken ,finishBuy);
 
 // Order Routes
-router.get("/orders", readOrders);
-router.get("/orders/:id", readOrdersById);
+router.get("/orders", validateToken ,readOrders);
+router.get("/ordersId", validateToken ,readOrdersById);
 
 // Default Route => Por si se ingresa una ruta no correspondida
 router.use(defaultUrl);

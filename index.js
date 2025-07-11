@@ -20,3 +20,5 @@ app.use(cors());
 
 app.use(logRoute);
 app.use("/", router);
+
+module.exports = app

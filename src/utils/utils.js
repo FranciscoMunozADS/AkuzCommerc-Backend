@@ -1,0 +1,4 @@
+// const secretKey = "ULTRA SECRET KEY :O"
+const secretKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWR1c3VhcmlvIjoidXNlcjAwMyIsIm5vbWJyZV9jb21wbGV0byI6IlBlZHJvIEdvbnphbGV6IiwidGVsZWZvbm8iOiI5ODczMjE2NTQiLCJlX21haWwiOiJwZWRyb2dvbnphbGVzQGV4YW1wbGUuY29tIiwidXJsX2F2YXRhciI6ImF2YXRhcjMuanBnIiwiaWF0IjoxNzUyMjA3NzM0LCJleHAiOjE3NTIyMTEzMzR9.0W7_iY6ovDyetmkwh9vWK2HPbqn13VliuK-I4bFAWLc"
+
+module.exports = { secretKey }
