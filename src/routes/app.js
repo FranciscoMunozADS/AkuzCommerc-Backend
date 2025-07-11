@@ -7,8 +7,19 @@ const {
   dropProduct,
   defaultUrl,
 } = require("../controllers/controllerProduct");
+const {
+  registerUser,
+  loginUser,
+  getProfile,
+} = require("../controllers/controllerUser");
+const { validateToken } = require("../middleware/middleware");
 
 const router = Router();
+
+// User Routes
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.get("/profile", validateToken, getProfile);
 
 // Product Routes
 router.get("/products", readProduct);
