@@ -33,9 +33,9 @@ const postAddCart = async (payload) => {
   await pool.query(query, values);
 };
 
-const deleteProductCart = async (id) => {
-  const query = "DELETE FROM carroCompra WHERE id = $1";
-  const values = [id];
+const deleteProductCart = async (sku) => {
+  const query = "DELETE FROM carroCompra WHERE sku = $1";
+  const values = [sku];
 
   const { rowCount } = await pool.query(query, values);
 
@@ -44,7 +44,7 @@ const deleteProductCart = async (id) => {
 };
 
 const postOrder = async (payload) => {
-
+  
 }
 
 module.exports = {

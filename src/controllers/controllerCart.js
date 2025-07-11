@@ -1,5 +1,9 @@
-const { postAddCart, deleteProductCart } = require("../models/queryCart");
-const { getProductCart } = require("../models/queryCart");
+const {
+  getProductCart,
+  postAddCart,
+  deleteProductCart,
+  postOrder,
+} = require("../models/queryCart");
 
 const readProductCart = async (req, res) => {
   try {
@@ -25,8 +29,8 @@ const addProductInCart = async (req, res) => {
 
 const dropProductInCart = async (req, res) => {
   try {
-    const { id } = req.params;
-    await deleteProductCart(id);
+    const { sku } = req.params;
+    await deleteProductCart(sku);
 
     res.send("Producto eliminado del Carro");
   } catch (error) {
@@ -37,7 +41,11 @@ const dropProductInCart = async (req, res) => {
 
 const finishBuy = async (req, res) => {
   try {
-    //TODO: Aterrizar bien este metodo
+    const payload = req.body;
+
+    const result = await postOrder(payload);
+
+    res.send("Compra realizada con éxito");
   } catch (error) {
     console.log(error);
     res.status(error.code || 500).send(error);

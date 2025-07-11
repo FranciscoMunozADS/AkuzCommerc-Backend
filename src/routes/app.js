@@ -13,6 +13,10 @@ const {
   dropProductInCart,
   finishBuy,
 } = require("../controllers/controllerCart");
+const {
+  readOrders,
+  readOrdersById,
+} = require("../controllers/controllerOrder");
 
 const router = Router();
 
@@ -28,6 +32,10 @@ router.get("/cart", readProductCart);
 router.post("/cart", addProductInCart);
 router.delete("/cart/:sku", dropProductInCart);
 router.get("/checkout", finishBuy);
+
+// Order Routes
+router.get("/orders", readOrders);
+router.get("/orders/:id", readOrdersById);
 
 // Default Route => Por si se ingresa una ruta no correspondida
 router.use(defaultUrl);
