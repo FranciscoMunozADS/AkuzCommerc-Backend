@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
         .json({ error: "Email y contraseña son obligatorios." });
     }
 
-    const user = await findUserByEmail(e_mail);
+    const user = await findUserByEmail(e_mail); 
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado." });
     }
@@ -91,9 +91,14 @@ const loginUser = async (req, res) => {
 
     const { password: _, ...userWithoutPassword } = user; // Para excluir la contraseña del objeto de respuesta
 
-    const token = jwt.sign(userWithoutPassword, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      {
+        id: user.id,
+        is_admin: user.is_admin,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     res.status(200).json({
       message: "Login exitoso.",

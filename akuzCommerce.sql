@@ -91,7 +91,18 @@ VALUES
 (1, 'SKU001', 2, 6990, '2025-07-01'),
 (2, 'SKU002', 1, 25000, '2025-07-02');
 
+-- Agregar id_usuarios a tabla productos(no la tenia por eso salía el error de estatus en postman al agregar un producto)
+ALTER TABLE productos
+ADD COLUMN id_usuario INT,
+ADD FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE;
 
+-- Agregar FLAG de ADMIN en tabla usuarios
+ALTER TABLE usuarios ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
+
+-- Cambiar el estatus del usuario Pedro Gonzales(id: 5 en mi DB) a ADMIN (este usuario se agregó por postman)
+UPDATE usuarios SET is_admin = true WHERE id = 5;
+
+-- Eliminar tablas
 DROP TABLE IF EXISTS 
   historicoVentasUsuario,
   carroCompra,
