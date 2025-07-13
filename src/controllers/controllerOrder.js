@@ -13,9 +13,9 @@ const readOrders = async (req, res) => {
 
 const readOrdersById = async (req, res) => {
   try {
-    const { id } = req.params;
+    const userId = req.user.id;
 
-    const prod = await getOrdersById(id);
+    const prod = await getOrdersById(userId);
 
     res.send(prod);
   } catch (error) {
