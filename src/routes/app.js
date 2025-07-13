@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { validateToken } = require("../middleware/middleware");
+const { validateToken, checkAdmin } = require("../middleware/middleware");
 
 const {
   registerUser,
@@ -35,20 +35,21 @@ router.get("/profile", validateToken, getProfile);
 
 // Product Routes
 router.get("/products", readProduct);
-router.post("/products", createProduct);
-router.put("/products/:id", updateProduct);
 router.get("/products/:id", readProductByID);
-router.delete("/products/:id", dropProduct);
+// Product Admin Routes
+router.post("/products", validateToken, checkAdmin, createProduct);
+router.put("/products/:id", validateToken, checkAdmin, updateProduct);
+router.delete("/products/:id", validateToken, checkAdmin, dropProduct);
 
 // Cart Routes
-router.get("/cart", readProductCart);
-router.post("/cart", addProductInCart);
-router.delete("/cart/:sku", dropProductInCart);
-router.get("/checkout", finishBuy);
+router.get("/cart", validateToken, readProductCart);
+router.post("/cart", validateToken, addProductInCart);
+router.delete("/cart/:sku", validateToken, dropProductInCart);
+router.get("/checkout", validateToken, finishBuy);
 
 // Order Routes
-router.get("/orders", readOrders);
-router.get("/orders/:id", readOrdersById);
+router.get("/orders", validateToken, readOrders);
+router.get("/orders/:id", validateToken, readOrdersById);
 
 // Default Route => Por si se ingresa una ruta no correspondida
 router.use(defaultUrl);
