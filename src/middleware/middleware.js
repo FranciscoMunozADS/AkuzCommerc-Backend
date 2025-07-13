@@ -24,7 +24,17 @@ const validateToken = (req, res, next) => {
   }
 };
 
+// Verificar si el usuario es ADMIN
+const checkAdmin = (req, res, next) => {
+  if (req.user && req.user.is_admin) {
+    next(); 
+  } else {
+    res.status(403).json({ error: "Acceso denegado: Solo administradoes." });
+  }
+};
+
 module.exports = {
     logRoute,
-    validateToken
+    validateToken,
+    checkAdmin
 }
