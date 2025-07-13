@@ -1,0 +1,571 @@
+{
+	"info": {
+		"_postman_id": "820a6cf9-b3a7-4774-b9dd-64ba59e90d37",
+		"name": "AkuzCommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27429585",
+		"_collection_link": "https://akuzcommerce.postman.co/workspace/AkuzCommerce-Workspace~77b9edb5-aaea-4784-8e3c-a1863b6dec25/collection/27429585-820a6cf9-b3a7-4774-b9dd-64ba59e90d37?action=share&source=collection_link&creator=27429585"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "getAllProducts()",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postNewProduct()",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNfYWRtaW4iOnRydWUsImlhdCI6MTc1MjM2NzQ4MCwiZXhwIjoxNzUyMzcxMDgwfQ.3Vn3y03JnjE00WHyPS9hD0cVY-hceJcjAAqsVHZNBfQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"sku\" : \"TO002\",\r\n\"descripcion\" : \"Tomate\",\r\n\"descripcionDetallada\" : \"Tomate del Norte\",\r\n\"precio_venta\" : 10000,\r\n\"stock_actual\" : 10,\r\n\"url_fotografia\" : \"producto01.jpg\",\r\n\"estatus\" : \"activo\",\r\n\"id_categoria\" : 1,\r\n\"id_usuario\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putProduct()",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE3NTIzNjc3NTIsImV4cCI6MTc1MjM3MTM1Mn0.ncdTSgo4eclI2B6FB7t46h8boGxE4S2gUo0Ncjl2ibs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"sku\" : \"TO002\",\r\n\"descripcion\" : \"Tomate\",\r\n\"descripcionDetallada\" : \"Tomate del Norte de Chile\",\r\n\"precio_venta\" : 15000,\r\n\"stock_actual\" : 50,\r\n\"url_fotografia\" : \"producto10.jpg\",\r\n\"estatus\" : \"activo\",\r\n\"id_categoria\" : 2,\r\n\"id_usuario\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByID()",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct()",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "defaultUrl()",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/rutaNoCorrespondiente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rutaNoCorrespondiente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Errores",
+					"item": [
+						{
+							"name": "usuarioExistente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"idUsuario\": \"user001\",\r\n  \"nombre_completo\": \"Juan Pérez\",\r\n  \"telefono\": \"987654321\",\r\n  \"e_mail\": \"juanperez@example.com\",\r\n  \"password\": \"secreta123\",\r\n  \"url_avatar\": \"avatar1.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "malFormatoEmail",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"idUsuario\": \"user004\",\r\n  \"nombre_completo\": \"Francisco Muñoz\",\r\n  \"telefono\": \"789456123\",\r\n  \"e_mail\": \"test\",\r\n  \"password\": \"secreta12345\",\r\n  \"url_avatar\": \"avatar4.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "passwordIncorrecto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"e_mail\": \"pedrogonzales@example.com\",\r\n  \"password\": \"pass123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "tokenIncorrecto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "456456",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "postNewUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idUsuario\": \"user004\",\r\n  \"nombre_completo\": \"Francisca Muñoz\",\r\n  \"telefono\": \"987321654\",\r\n  \"e_mail\": \"fra.munoz@example.com\",\r\n  \"password\": \"fra12345\",\r\n  \"url_avatar\": \"avatar4.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_mail\" : \"fra.munoz@example.com\",\r\n    \"password\" : \"fra12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfile/tokenAuth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWR1c3VhcmlvIjoidXNlcjAwMyIsIm5vbWJyZV9jb21wbGV0byI6IlBlZHJvIEdvbnphbGV6IiwidGVsZWZvbm8iOiI5ODczMjE2NTQiLCJlX21haWwiOiJwZWRyb2dvbnphbGVzQGV4YW1wbGUuY29tIiwidXJsX2F2YXRhciI6ImF2YXRhcjMuanBnIiwiaWF0IjoxNzUyMjAyMTgxLCJleHAiOjE3NTIyMDU3ODF9.JwW6Hu3rAVdya1GpjTQBzv1SRYTultccFWD4u8jxWSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "readProductCart()",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProductInCart()",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku\": \"TO002\",\r\n    \"cantidad\": 2,\r\n    \"id_usuario\": 1,\r\n    \"precioVenta\": 15000,\r\n    \"statusCarro\": \"pendiente\",\r\n    \"fecha\": \"2025-07-09\",\r\n    \"hora\": \"00:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dropProductInCart()",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cart/:sku",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cart",
+								":sku"
+							],
+							"variable": [
+								{
+									"key": "sku",
+									"value": "TO002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finishBuy()",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWR1c3VhcmlvIjoidXNlcjAwMyIsIm5vbWJyZV9jb21wbGV0byI6IlBlZHJvIEdvbnphbGV6IiwidGVsZWZvbm8iOiI5ODczMjE2NTQiLCJlX21haWwiOiJwZWRyb2dvbnphbGVzQGV4YW1wbGUuY29tIiwidXJsX2F2YXRhciI6ImF2YXRhcjMuanBnIiwiaWF0IjoxNzUyMjA1MjM2LCJleHAiOjE3NTIyMDg4MzZ9.HmLMcaNUWIuoJOEPzmTtu0RlAhwQ2Q_fphTSnjQ5Zf0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"products\": [\r\n    { \"product_id\": 1, \"quantity\": 2 },\r\n    { \"product_id\": 2, \"quantity\": 1 }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordenes",
+			"item": [
+				{
+					"name": "readOrders()",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWR1c3VhcmlvIjoidXNlcjAwMyIsIm5vbWJyZV9jb21wbGV0byI6IlBlZHJvIEdvbnphbGV6IiwidGVsZWZvbm8iOiI5ODczMjE2NTQiLCJlX21haWwiOiJwZWRyb2dvbnphbGVzQGV4YW1wbGUuY29tIiwidXJsX2F2YXRhciI6ImF2YXRhcjMuanBnIiwiaWF0IjoxNzUyMjA1ODIzLCJleHAiOjE3NTIyMDk0MjN9.qqlamrawFQ2kRFfdYMttVhC_QRzImyyQOJMHeBIPEpI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readOrdersById()",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWR1c3VhcmlvIjoidXNlcjAwMyIsIm5vbWJyZV9jb21wbGV0byI6IlBlZHJvIEdvbnphbGV6IiwidGVsZWZvbm8iOiI5ODczMjE2NTQiLCJlX21haWwiOiJwZWRyb2dvbnphbGVzQGV4YW1wbGUuY29tIiwidXJsX2F2YXRhciI6ImF2YXRhcjMuanBnIiwiaWF0IjoxNzUyMjA1ODIzLCJleHAiOjE3NTIyMDk0MjN9.qqlamrawFQ2kRFfdYMttVhC_QRzImyyQOJMHeBIPEpI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/ordersId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ordersId"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
