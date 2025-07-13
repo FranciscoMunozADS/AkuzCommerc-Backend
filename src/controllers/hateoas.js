@@ -9,10 +9,7 @@ const prepareHATEOAS = (productos) => {
       stock_actual: p.stock_actual,
       url_fotografia: p.url_fotografia,
       categoria: p.categoria,
-      usuario: {
-        id: p.id_usuario,
-        nombre_completo: p.nombre_completo,
-      },
+      usuario: p.user,
     };
   });
 
