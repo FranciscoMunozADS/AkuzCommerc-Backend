@@ -1,6 +1,6 @@
 const request = require("supertest");
-const server = require("./../../index.js");
-const { secretKey } = require("./../utils/utils.js");
+const server = require("../../index.js");
+const { secretKey } = require("../utils/utils.js");
 
 describe("Operaciones StatusCode en AkuzCommerce", () => {
   it("Se obtiene un status code 200 como respuesta de la ruta POST /login", async () => {
@@ -21,7 +21,12 @@ describe("Operaciones StatusCode en AkuzCommerce", () => {
   });
 
   it("Se obtiene un status code 200 como respuesta de la ruta GET /cart", async () => {
-    const response = await request(server).get("/cart").send();
+        const token = `Bearer ${secretKey}`;
+
+    const response = await request(server)
+      .get("/cart")
+      .set("Authorization", token)
+      .send();
 
     expect(response.statusCode).toBe(200);
   });
