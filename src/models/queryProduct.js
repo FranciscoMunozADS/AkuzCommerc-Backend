@@ -85,12 +85,30 @@ const putProduct = async (payload, id) => {
   }
 };
 
+const getProductCategory = async (categoria) => {
+  const query = `
+  SELECT * FROM productos p 
+  INNER JOIN categoriaProductos c 
+  ON p.id_categoria = c.id 
+  WHERE c.id = $1
+  `;
+  const values = [categoria];
+
+  const {
+    rows: products,
+  } = await pool.query(query, values);
+
+  console.log(products);
+
+  return products;
+};
+
 const getProductByID = async (id) => {
   const query = "SELECT * FROM productos WHERE id = $1";
   const values = [id];
 
   const {
-    rows: [products],
+    rows: products,
   } = await pool.query(query, values);
 
   return products;
@@ -110,6 +128,7 @@ module.exports = {
   getAllProducts,
   postNewProduct,
   putProduct,
+  getProductCategory,
   getProductByID,
   deleteProduct,
 };

@@ -2,6 +2,7 @@ const {
   getAllProducts,
   postNewProduct,
   putProduct,
+  getProductCategory,
   getProductByID,
   deleteProduct,
 } = require("../models/queryProduct");
@@ -42,6 +43,19 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const readProductCategory = async (req, res) => {
+    try {
+    const { categoria } = req.params;
+
+    const result = await getProductCategory(categoria);
+
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(error.code || 404);
+  }
+}
+
 const readProductByID = async (req, res) => {
   try {
     const { id } = req.params;
@@ -77,6 +91,7 @@ module.exports = {
   readProduct,
   createProduct,
   updateProduct,
+  readProductCategory,
   readProductByID,
   dropProduct,
   defaultUrl,

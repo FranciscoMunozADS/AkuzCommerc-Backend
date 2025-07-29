@@ -11,6 +11,7 @@ const {
   readProduct,
   createProduct,
   updateProduct,
+  readProductCategory,
   readProductByID,
   dropProduct,
   defaultUrl,
@@ -35,6 +36,7 @@ router.get("/profile", validateToken, getProfile);
 
 // Product Routes
 router.get("/products", readProduct);
+router.get("/products/:categoria", readProductCategory);
 router.get("/products/:id", readProductByID);
 // Product Admin Routes
 router.post("/products", validateToken, checkAdmin, createProduct);
