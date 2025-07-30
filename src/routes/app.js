@@ -39,9 +39,11 @@ router.get("/products", readProduct);
 router.get("/products/:categoria", readProductCategory);
 router.get("/products/:id", readProductByID);
 // Product Admin Routes
-router.post("/products", validateToken, checkAdmin, createProduct);
+router.post("/products",  createProduct);
+// validateToken, checkAdmin,
 router.put("/products/:id", validateToken, checkAdmin, updateProduct);
-router.delete("/products/:id", validateToken, checkAdmin, dropProduct);
+router.delete("/products/:id", dropProduct);
+// validateToken, checkAdmin,
 
 // Cart Routes
 router.get("/cart", validateToken, readProductCart);

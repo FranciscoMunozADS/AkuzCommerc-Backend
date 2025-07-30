@@ -2,7 +2,7 @@ const { pool } = require("../database/connection");
 
 const getAllProducts = async () => {
   const query = `
-  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.descripcion as categoria, json_build_object('id', u.id, 'name', u.nombre_completo) as user 
+  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, json_build_object('id', u.id, 'name', u.nombre_completo) as user 
   FROM productos p 
   INNER join categoriaProductos cp 
   ON p.id_categoria = cp.id 
@@ -87,18 +87,15 @@ const putProduct = async (payload, id) => {
 
 const getProductCategory = async (categoria) => {
   const query = `
-  SELECT * FROM productos p 
+  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, p.estatus, p.id_usuario, c.id as categoriaId, c.descripcion as descripcionCategoria
+  FROM productos p 
   INNER JOIN categoriaProductos c 
   ON p.id_categoria = c.id 
   WHERE c.id = $1
   `;
   const values = [categoria];
 
-  const {
-    rows: products,
-  } = await pool.query(query, values);
-
-  console.log(products);
+  const { rows: products } = await pool.query(query, values);
 
   return products;
 };
@@ -107,9 +104,7 @@ const getProductByID = async (id) => {
   const query = "SELECT * FROM productos WHERE id = $1";
   const values = [id];
 
-  const {
-    rows: products,
-  } = await pool.query(query, values);
+  const { rows: products } = await pool.query(query, values);
 
   return products;
 };
@@ -121,7 +116,7 @@ const deleteProduct = async (id) => {
   const { rowCount } = await pool.query(query, values);
 
   if (!rowCount)
-    throw { code: 404, message: "No se encontró ningún usuario con este ID" };
+    throw { code: 404, message: "No se encontró ningún producto con este ID" };
 };
 
 module.exports = {
