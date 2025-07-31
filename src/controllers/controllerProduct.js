@@ -2,6 +2,7 @@ const {
   getAllProducts,
   postNewProduct,
   putProduct,
+  getProductCategory,
   getProductByID,
   deleteProduct,
 } = require("../models/queryProduct");
@@ -22,7 +23,7 @@ const createProduct = async (req, res) => {
   try {
     const payload = req.body;
     await postNewProduct(payload);
-    res.status(201).send("Producto Creado");
+    res.status(201).json({ message: "Producto Creado" });
   } catch (error) {
     console.log(error);
     res.status(error.code || 400).send(error);
@@ -39,6 +40,19 @@ const updateProduct = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(error.code || 400).send(error);
+  }
+};
+
+const readProductCategory = async (req, res) => {
+  try {
+    const { categoria } = req.params;
+
+    const result = await getProductCategory(categoria);
+
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(error.code || 404);
   }
 };
 
@@ -60,7 +74,7 @@ const dropProduct = async (req, res) => {
     const { id } = req.params;
     await deleteProduct(id);
 
-    res.status(200).send("Producto Eliminado");
+    res.status(200).json({ message: "Producto Eliminado" });
   } catch (error) {
     console.log(error);
     res.status(error.code || 404).send(error);
@@ -77,6 +91,7 @@ module.exports = {
   readProduct,
   createProduct,
   updateProduct,
+  readProductCategory,
   readProductByID,
   dropProduct,
   defaultUrl,

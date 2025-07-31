@@ -2,9 +2,8 @@ const prepareHATEOAS = (productos) => {
   const HATEOAS = productos.map((p) => {
     return {
       id: p.id,
-      sku: p.sku,
       descripcion: p.descripcion,
-      descripcionDetallada: p.descripcionDetallada,
+      descripciondetallada: p.descripciondetallada,
       precio_venta: p.precio_venta,
       stock_actual: p.stock_actual,
       url_fotografia: p.url_fotografia,
