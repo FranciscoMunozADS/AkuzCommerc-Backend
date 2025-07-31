@@ -39,11 +39,10 @@ router.get("/products", readProduct);
 router.get("/products/:categoria", readProductCategory);
 router.get("/products/:id", readProductByID);
 // Product Admin Routes
-router.post("/products",  createProduct);
-// validateToken, checkAdmin,
+router.post("/products", createProduct);
 router.put("/products/:id", validateToken, checkAdmin, updateProduct);
 router.delete("/products/:id", dropProduct);
-// validateToken, checkAdmin,
+//validateToken, checkAdmin,
 
 // Cart Routes
 router.get("/cart", validateToken, readProductCart);
@@ -52,8 +51,9 @@ router.delete("/cart/:sku", validateToken, dropProductInCart);
 router.get("/checkout", validateToken, finishBuy);
 
 // Order Routes
-router.get("/orders", validateToken, readOrders);
-router.get("/orders/:id", validateToken, readOrdersById);
+router.get("/orders", readOrders);
+// validateToken,
+router.get("/orders/:id", readOrdersById);
 
 // Default Route => Por si se ingresa una ruta no correspondida
 router.use(defaultUrl);
