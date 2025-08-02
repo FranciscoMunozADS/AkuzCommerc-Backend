@@ -2,7 +2,7 @@ const { pool } = require("../database/connection");
 
 const getAllProducts = async () => {
   const query = `
-  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, u.id as idUsuario, u.nombre_completo as nombreUsuario
+  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, u.id as idusuario, u.nombre_completo as nombreusuario
   FROM productos p 
   LEFT JOIN categoriaProductos cp 
   ON p.id_categoria = cp.id 
