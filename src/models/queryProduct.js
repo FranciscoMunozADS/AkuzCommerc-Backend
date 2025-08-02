@@ -2,7 +2,7 @@ const { pool } = require("../database/connection");
 
 const getAllProducts = async () => {
   const query = `
-  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, json_build_object('id', u.id, 'name', u.nombre_completo) as user 
+  SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, u.id as idUsuario, u.nombre_completo as nombreUsuario
   FROM productos p 
   LEFT JOIN categoriaProductos cp 
   ON p.id_categoria = cp.id 
