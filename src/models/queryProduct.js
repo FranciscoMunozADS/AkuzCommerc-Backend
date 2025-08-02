@@ -4,9 +4,9 @@ const getAllProducts = async () => {
   const query = `
   SELECT p.id, p.descripcion, p.descripcionDetallada, p.precio_venta, p.stock_actual, p.url_fotografia, cp.id as categoria, json_build_object('id', u.id, 'name', u.nombre_completo) as user 
   FROM productos p 
-  INNER join categoriaProductos cp 
+  LEFT JOIN categoriaProductos cp 
   ON p.id_categoria = cp.id 
-  INNER join usuarios u 
+  LEFT JOIN usuarios u 
   ON p.id_usuario = u.id
   `;
 
