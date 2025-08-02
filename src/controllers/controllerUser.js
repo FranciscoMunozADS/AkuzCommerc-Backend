@@ -2,6 +2,7 @@ const {
   insertUser,
   findUserByEmailOrId,
   findUserByEmail,
+  getProfileInfo,
 } = require("../models/queryUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -79,7 +80,7 @@ const loginUser = async (req, res) => {
         .json({ error: "Email y contraseña son obligatorios." });
     }
 
-    const user = await findUserByEmail(e_mail); 
+    const user = await findUserByEmail(e_mail);
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado." });
     }
@@ -113,10 +114,17 @@ const loginUser = async (req, res) => {
 
 /***** Profile *****/
 
-const getProfile = (req, res) => {
+const getProfile = async (req, res) => {
   try {
-    const user = req.user;
-    res.status(200).json({ user });
+    const { id } = req.user;
+
+    const result = await getProfileInfo(id);
+
+    if (!result) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    res.status(200).json({user: result});
   } catch (error) {
     console.error("Error al obtener perfil:", error.message);
     res.status(500).json({ error: "Error al obtener perfil." });
