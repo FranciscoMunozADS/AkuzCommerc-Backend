@@ -2,7 +2,6 @@ const { Router } = require("express");
 const {
   validateToken,
   checkAdmin,
-  fakeAuth,
 } = require("../middleware/middleware");
 
 const {

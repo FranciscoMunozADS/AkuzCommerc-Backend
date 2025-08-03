@@ -38,5 +38,4 @@ module.exports = {
     logRoute,
     validateToken,
     checkAdmin,
-    fakeAuth
 }
