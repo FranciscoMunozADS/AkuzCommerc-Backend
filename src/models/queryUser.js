@@ -47,7 +47,7 @@ const findUserByEmail = async (e_mail) => {
   return rows[0];
 };
 
-/* */
+/* Update de Profile */
 
 const getProfileInfo = async (id) => {
   const query = `SELECT * FROM usuarios WHERE id = $1`;
