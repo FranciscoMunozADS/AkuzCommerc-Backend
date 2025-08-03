@@ -48,34 +48,26 @@ const postNewProduct = async (payload) => {
 
 const putProduct = async (payload, id) => {
   const {
-    sku,
     descripcion,
-    descripcionDetallada,
+    descripciondetallada,
     precio_venta,
     stock_actual,
     url_fotografia,
-    estatus,
-    id_categoria,
-    id_usuario,
   } = payload;
 
   const values = [
-    sku,
     descripcion,
-    descripcionDetallada,
+    descripciondetallada,
     precio_venta,
     stock_actual,
     url_fotografia,
-    estatus,
-    id_categoria,
-    id_usuario,
     id,
   ];
 
   const query = `
   UPDATE productos 
-  SET sku = $1 ,descripcion = $2 ,descripcionDetallada = $3 ,precio_venta = $4 ,stock_actual = $5 ,url_fotografia = $6 ,estatus = $7 ,id_categoria = $8, id_usuario = $9 
-  WHERE id = $10
+  SET descripcion = $1 ,descripcionDetallada = $2 ,precio_venta = $3 ,stock_actual = $4 ,url_fotografia = $5 
+  WHERE id = $6
   `;
 
   const { rowCount } = await pool.query(query, values);
