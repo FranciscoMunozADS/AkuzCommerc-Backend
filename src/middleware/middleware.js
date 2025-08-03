@@ -33,8 +33,18 @@ const checkAdmin = (req, res, next) => {
   }
 };
 
+// Datos de prueba (Eliminar despues)
+const fakeAuth = (req, res, next) => {
+  req.user = {
+    id: 1, // ID simulado de un usuario existente
+    name: "Usuario de prueba",
+  };
+  next();
+};
+
 module.exports = {
     logRoute,
     validateToken,
-    checkAdmin
+    checkAdmin,
+    fakeAuth
 }

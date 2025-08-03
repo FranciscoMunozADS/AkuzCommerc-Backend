@@ -1,5 +1,9 @@
 const { Router } = require("express");
-const { validateToken, checkAdmin } = require("../middleware/middleware");
+const {
+  validateToken,
+  checkAdmin,
+  fakeAuth,
+} = require("../middleware/middleware");
 
 const {
   registerUser,
@@ -39,21 +43,19 @@ router.get("/products", readProduct);
 router.get("/products/:categoria", readProductCategory);
 router.get("/products/:id", readProductByID);
 // Product Admin Routes
-router.post("/products", createProduct);
+router.post("/products", validateToken, checkAdmin, createProduct);
 router.put("/products/:id", validateToken, checkAdmin, updateProduct);
-router.delete("/products/:id", dropProduct);
-//validateToken, checkAdmin,
+router.delete("/products/:id", validateToken, checkAdmin, dropProduct);
 
 // Cart Routes
 router.get("/cart", validateToken, readProductCart);
 router.post("/cart", validateToken, addProductInCart);
 router.delete("/cart/:sku", validateToken, dropProductInCart);
-router.get("/checkout", validateToken, finishBuy);
+router.post("/checkout", validateToken, finishBuy);
 
 // Order Routes
 router.get("/orders", readOrders);
-// validateToken,
-router.get("/orders/:id", readOrdersById);
+router.get("/orders/:id", validateToken, readOrdersById);
 
 // Default Route => Por si se ingresa una ruta no correspondida
 router.use(defaultUrl);
