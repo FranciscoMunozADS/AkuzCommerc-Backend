@@ -73,17 +73,18 @@ VALUES
   ('Otros');
 
 -- Usuarios
+-- User Admin => juan@mail.com ; pass123
 INSERT INTO usuarios (idUsuario, nombre_completo, telefono, e_mail, password, url_avatar, is_admin)
 VALUES 
-  ('user001', 'Juan Pérez', '987654321', 'juan@mail.com', 'pass123', 'avatar1.jpg', TRUE),
-  ('user002', 'Maria Tapia', '912345678', 'maria@mail.com', 'secure456', 'avatar2.jpg', FALSE);
+  ('user001', 'Juan Pérez', '987654321', 'juan@mail.com', '$2a$12$iTfNMeLpetYVh0XYh/6VHuYdqi6FuAE/7SgWtZ.7Dn4NIIDqgS9gy', 'https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg', TRUE),
+  ('user002', 'Maria Tapia', '912345678', 'maria@mail.com', '$2a$12$ooSIHLohhHuhasm8Q.nM7eYGUTj0pQiAjtI8W3Nr8Df79vXxhWnsi', 'https://www.w3schools.com/w3images/avatar6.png', FALSE);
 
 -- Productos (asociados al usuario 1 — Juan Pérez)
 INSERT INTO productos (sku, descripcion, descripcionDetallada, precio_venta, stock_actual, url_fotografia, estatus, id_categoria, id_usuario)
 VALUES 
-  ('SKU001', 'Café Premium', 'Café arábico orgánico', 6990, 50, 'cafe.jpg', 'activo', 1, 1),
-  ('SKU002', 'Ajo Negro', 'Ajo fermentado 100g', 25000, 30, 'ajo.jpg', 'activo', 2, 1),
-  ('SKU003', 'Miel Natural', 'Miel pura de abeja 1Kg', 10000, 20, 'miel.jpg', 'activo', 3, 1);
+  ('SKU001', 'Café Premium', 'Café arábico orgánico', 6990, 50, 'https://walmartsv.vtexassets.com/arquivos/ids/614391/87399_01.jpg?v=638682502152130000', 'activo', 1, 1),
+  ('SKU002', 'Ajo Negro', 'Ajo fermentado 100g', 25000, 30, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_pUGzJxXiBrIGtJ8w6CepuxHBKtd8zxvMw&s', 'activo', 2, 1),
+  ('SKU003', 'Miel Natural', 'Miel pura de abeja 1Kg', 10000, 20, 'https://media.istockphoto.com/id/155308208/es/foto/miel.jpg?s=612x612&w=0&k=20&c=syb40kUwYliK9Ak-rj04AMwTCc4Nx6dzqUAk5h4hCV0=', 'activo', 3, 1);
 
 -- Carro de compras (usuarios 1 y 2 comprando productos)
 INSERT INTO carroCompra (sku, cantidad, id_usuario, precioVenta, statusCarro, fecha, hora)
@@ -105,3 +106,5 @@ DROP TABLE IF EXISTS
   usuarios,
   categoriaProductos
 CASCADE;
+
+select * from productos
