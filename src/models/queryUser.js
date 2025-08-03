@@ -47,4 +47,12 @@ const findUserByEmail = async (e_mail) => {
   return rows[0];
 };
 
-module.exports = { insertUser, findUserByEmailOrId, findUserByEmail };
+/* Update de Profile */
+
+const getProfileInfo = async (id) => {
+  const query = `SELECT * FROM usuarios WHERE id = $1`;
+  const { rows } = await pool.query(query, [id]);
+  return rows[0];
+}
+
+module.exports = { insertUser, findUserByEmailOrId, findUserByEmail, getProfileInfo };

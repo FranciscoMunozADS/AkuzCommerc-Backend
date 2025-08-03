@@ -33,8 +33,9 @@ const checkAdmin = (req, res, next) => {
   }
 };
 
+
 module.exports = {
     logRoute,
     validateToken,
-    checkAdmin
+    checkAdmin,
 }
