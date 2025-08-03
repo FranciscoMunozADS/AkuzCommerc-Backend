@@ -51,8 +51,7 @@ router.delete("/products/:id", validateToken, checkAdmin, dropProduct);
 router.get("/cart", validateToken, readProductCart);
 router.post("/cart", validateToken, addProductInCart);
 router.delete("/cart/:sku", validateToken, dropProductInCart);
-router.post("/checkout", fakeAuth, finishBuy);
-// validateToken,
+router.post("/checkout", validateToken, finishBuy);
 
 // Order Routes
 router.get("/orders", readOrders);
