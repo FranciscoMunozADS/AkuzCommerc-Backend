@@ -59,7 +59,11 @@ CREATE TABLE historicoVentasUsuario (
   cantidad_vendida INT NOT NULL,
   precio_producto DECIMAL(10,2) NOT NULL,
   fecha_compra DATE NOT NULL,
+<<<<<<< HEAD
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+=======
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+>>>>>>> origin/develop
 );
 
 -- Datos de Prueba
